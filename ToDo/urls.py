@@ -1,22 +1,11 @@
-"""ToDo URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from .views import AddTodo, UpdateTodo, RemoveTodo, TodoList, TodayToDos
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("accounts/", include("Account.urls")),
+    path("add/", AddTodo.as_view(), name="add todo"),
+    path("<int:todo_id>/update/", UpdateTodo.as_view(), name="update todo"),
+    path("<int:todo_id>/delete/", RemoveTodo.as_view(), name="remove todo"),
+    path("list/", TodoList.as_view(), name="todo list"),
+    path("today/", TodayToDos.as_view(), name="today todos")
+
 ]
