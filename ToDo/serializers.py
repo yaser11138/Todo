@@ -6,5 +6,6 @@ class ToDoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Todo
+
         exclude = ['user']
 
